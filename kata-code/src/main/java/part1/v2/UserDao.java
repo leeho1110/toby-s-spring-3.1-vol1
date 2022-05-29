@@ -3,7 +3,8 @@ package part1.v2;
 import part1.v1.User;
 
 import java.sql.*;
-public class UserDao {
+
+public abstract class UserDao {
 
     public void add(User user) throws ClassNotFoundException, SQLException {
         Connection conn = getConnection();
@@ -41,26 +42,5 @@ public class UserDao {
     }
 
     // 중복 제거
-    private Connection getConnection() throws ClassNotFoundException, SQLException {
-        Class.forName ("org.h2.Driver");
-        Connection conn = DriverManager.getConnection ("jdbc:h2:tcp://localhost/~/test", "sa","");
-        return conn;
-    }
-
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        UserDao userDao = new UserDao();
-
-        User user = new User();
-        user.setId("leeho");
-        user.setName("이호");
-        user.setPassword("25");
-
-        userDao.add(user);
-
-        System.out.println(user.getId() + "등록에 성공했습니다!");
-
-        User userLeeho = userDao.get(user.getId());
-        System.out.println("userLeeho.name = " + userLeeho.getName());
-        System.out.println("userLeeho.password = " + userLeeho.getPassword());
-    }
+    public abstract Connection getConnection() throws ClassNotFoundException, SQLException;
 }
