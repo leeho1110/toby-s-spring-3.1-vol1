@@ -10,8 +10,8 @@ import java.sql.SQLException;
 public class UserDao {
     private ConnectionMaker connectionMaker;
 
-    public UserDao() {
-        this.connectionMaker = new DConnectionMaker(); // 구현 클래스 노출됨!!
+    public UserDao(ConnectionMaker connectionMaker) {
+        this.connectionMaker = connectionMaker;
     }
 
     public void add(User user) throws ClassNotFoundException, SQLException {
@@ -48,22 +48,4 @@ public class UserDao {
 
         return user;
     }
-
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        UserDao userDao = new UserDao();
-
-        User user = new User();
-        user.setId("leeho");
-        user.setName("이호");
-        user.setPassword("25");
-
-        userDao.add(user);
-
-        System.out.println(user.getId() + "등록에 성공했습니다!");
-
-        User userLeeho = userDao.get(user.getId());
-        System.out.println("userLeeho.name = " + userLeeho.getName());
-        System.out.println("userLeeho.password = " + userLeeho.getPassword());
-    }
-
 }
