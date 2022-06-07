@@ -1,7 +1,6 @@
 package part3.v6;
 
 import org.springframework.dao.DataAccessException;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.ResultSetExtractor;
@@ -78,7 +77,7 @@ public class UserDao {
         );
     }
 
-    public List<User> getAll(String id){
+    public List<User> getAll(){
         return this.jdbcTemplate.query("select * from order by id", this.userMapper);
     }
 
