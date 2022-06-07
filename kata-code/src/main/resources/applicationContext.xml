@@ -49,4 +49,9 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+    <!-- UserDao Part 4: -->
+    <bean id="userDao4" class="part4.UserDaoJdbc">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
 </beans>
