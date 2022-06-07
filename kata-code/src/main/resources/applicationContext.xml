@@ -12,8 +12,41 @@
         <property name="password" value=""/>
     </bean>
 
+    <!-- UserDao Part 1: v7 -->
     <bean id="userDao" class="part1.v7.UserDao">
         <property name="connectionMaker" ref="connectionMaker"/>
         <property name="dataSource" ref="dataSource"/>
     </bean>
+
+    <!-- UserDao Part 3: v3 -->
+    <bean id="userDao3_v1" class="part3.v1.UserDao">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="userDao3_v3_strategy" class="part3.v3.strategy.UserDao">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="userDao3_v3_localclass" class="part3.v3.localclass.UserDao">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="userDao3_v3_annonymous" class="part3.v3.anonymous.UserDao">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- UserDao Part 3: v4 -->
+    <bean id="userDao3_v4" class="part3.v4.UserDao">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- UserDao Part 3: v5 -->
+    <bean id="userDao3_v5_extract" class="part3.v5.extractmethod.UserDao">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="userDao3_v5_move" class="part3.v5.movemethod.UserDao">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
 </beans>
