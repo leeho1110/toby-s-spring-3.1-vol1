@@ -1,4 +1,4 @@
-package part3.part1.returnsingleton;
+package part1.returnsingleton;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;

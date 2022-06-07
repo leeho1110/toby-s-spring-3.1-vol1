@@ -1,4 +1,4 @@
-package part3.part1.xmlconfig;
+package part1.xmlconfig;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.context.support.GenericXmlApplicationContext;

@@ -1,4 +1,4 @@
-package part3.part1.getbean;
+package part1.getbean;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
