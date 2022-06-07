@@ -28,7 +28,6 @@ public class UserDaoTest {
         user.setPassword("25");
     }
 
-    @Transactional
     @Nested
     class test_add {
 
@@ -63,6 +62,7 @@ public class UserDaoTest {
             // given
             part3.v3.localclass.UserDao userDao = applicationContext.getBean("userDao3_v3_localclass", part3.v3.localclass.UserDao.class);
             user.setId("anonymous");
+
             // when
             userDao.add(user);
 
