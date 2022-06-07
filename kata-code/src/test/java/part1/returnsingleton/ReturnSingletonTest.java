@@ -1,10 +1,8 @@
-package part1.returnsingleton;
+package part3.part1.returnsingleton;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import part1.getbean.BeanConfiguration;
-import part1.getbean.BornTobeBean;
 import part1.v5.DaoFactory;
 import part1.v5.UserDao;
 

@@ -1,4 +1,4 @@
-package part1.getbean;
+package part3.part1.getbean;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
