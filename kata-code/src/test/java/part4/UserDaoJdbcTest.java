@@ -1,9 +1,10 @@
 package part4;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -11,7 +12,8 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator;
 import org.springframework.jdbc.support.SQLExceptionTranslator;
-import org.springframework.scheduling.concurrent.ScheduledExecutorTask;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import part1.v1.User;
 
 import javax.sql.DataSource;
@@ -20,22 +22,26 @@ import java.sql.SQLException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(locations = "/applicationContext.xml")
 class UserDaoJdbcTest {
 
     private DataSource dataSource;
-    private GenericXmlApplicationContext applicationContext;
+    @Autowired
+    private ApplicationContext context;
 
 
     @BeforeEach
     public void setUp(){
-        applicationContext = new GenericXmlApplicationContext("applicationContext.xml");
-        dataSource = applicationContext.getBean("dataSource", SimpleDriverDataSource.class);
+        context = new GenericXmlApplicationContext("applicationContext.xml");
+        dataSource = context.getBean("dataSource", SimpleDriverDataSource.class);
     }
 
     @Test
     void test_add_when_instanceField_is_null() {
         // given
-        UserDao userDao = applicationContext.getBean("userDao4", UserDaoJdbc.class);
+        UserDao userDao = context.getBean("userDao4", UserDaoJdbc.class);
         User user = new User();
 
         // when & then
@@ -54,7 +60,7 @@ class UserDaoJdbcTest {
     @Test
     void test_add_when_duplicate_user_is_added() {
         // given
-        UserDao userDao = applicationContext.getBean("userDao4", UserDaoJdbc.class);
+        UserDao userDao = context.getBean("userDao4", UserDaoJdbc.class);
         User user = new User();
         user.setId("id");
         user.setPassword("pw");
@@ -77,7 +83,7 @@ class UserDaoJdbcTest {
     @Test
     public void test_translate_sqlException_to_dataAccessException(){
         // given
-        UserDao userDao = applicationContext.getBean("userDao4", UserDaoJdbc.class);
+        UserDao userDao = context.getBean("userDao4", UserDaoJdbc.class);
         User user = new User();
         user.setId("id");
         user.setPassword("pw");
