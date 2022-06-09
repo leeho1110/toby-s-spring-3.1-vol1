@@ -41,6 +41,17 @@ public class UserDao {
         return user;
     }
 
+    public void deleteAll() throws SQLException, ClassNotFoundException {
+        Class.forName ("org.h2.Driver");
+        Connection conn = DriverManager.getConnection ("jdbc:h2:tcp://localhost/~/test", "sa","");
+
+        PreparedStatement ps = conn.prepareStatement("delete from users;");
+        ps.executeUpdate();
+
+        ps.close();
+        conn.close();
+    }
+
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         UserDao userDao = new UserDao();
 
